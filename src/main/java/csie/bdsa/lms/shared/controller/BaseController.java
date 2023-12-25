@@ -25,7 +25,7 @@ public abstract class BaseController<MODEL extends BaseEntity<ID>, DTO extends B
 
     private final BaseService<MODEL, DTO, ID> service;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<DTO>> getAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
@@ -35,7 +35,7 @@ public abstract class BaseController<MODEL extends BaseEntity<ID>, DTO extends B
         return new ResponseEntity<>(service.findAll(pageable, search), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<List<DTO>> get(@PathVariable Set<ID> ids) {
         return new ResponseEntity<>(service.findById(ids), HttpStatus.OK);
     }
@@ -46,13 +46,13 @@ public abstract class BaseController<MODEL extends BaseEntity<ID>, DTO extends B
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<DTO> update(@PathVariable ID id, @Valid @RequestBody DTO dto) {
         dto.setId(id);
         return new ResponseEntity<>(service.save(dto), HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable Set<ID> ids) {
         service.delete(ids);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

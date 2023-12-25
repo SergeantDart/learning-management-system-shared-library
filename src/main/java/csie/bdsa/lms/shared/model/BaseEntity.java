@@ -20,7 +20,7 @@ import org.hibernate.annotations.GenericGenerator;
 public abstract class BaseEntity<ID> {
 
     @Id
-    @GenericGenerator(name = "CustomIdentityGenerator", strategy = "csie.bdsa.lms.shared.CustomIdentityGenerator")
+    @GenericGenerator(name = "CustomIdentityGenerator", strategy = "csie.bdsa.lms.shared.util.CustomIdentityGenerator")
     @GeneratedValue(generator = "CustomIdentityGenerator")
     protected ID id;
 

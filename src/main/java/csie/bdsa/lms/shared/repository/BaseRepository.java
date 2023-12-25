@@ -41,7 +41,7 @@ public interface BaseRepository<MODEL extends BaseEntity<ID>, ID> extends CrudRe
     @Modifying
     void restoreByIds(Set<ID> ids);
 
-    @Query("SELECT x FROM #{#entityName} x WHERE x.deleted = false AND CAST(x.id AS STRING) LIKE :search")
+    @Query("SELECT x FROM #{#entityName} x WHERE x.deleted = false AND CAST(x.id AS string) LIKE :search")
     Page<MODEL> findContaining(Pageable pageable, @Param("search") String search);
 
 }
